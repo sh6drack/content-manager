@@ -1,26 +1,181 @@
 @import "tailwindcss";
 
+/* ─── Design Tokens ─── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Surfaces */
+  --bg-deep: #08060a;
+  --bg-surface: rgba(20, 16, 26, 0.65);
+  --bg-surface-hover: rgba(40, 32, 50, 0.5);
+  --bg-cell: rgba(15, 12, 20, 0.4);
+  --bg-cell-hover: rgba(25, 20, 30, 0.5);
+  --bg-cell-muted: rgba(10, 8, 12, 0.2);
+  --bg-rail: rgba(10, 8, 12, 0.4);
+  --bg-sidebar: rgba(10, 8, 12, 0.2);
+
+  /* Borders */
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-highlight: rgba(221, 203, 186, 0.3);
+
+  /* Accent */
+  --accent-cream: #ddcbba;
+  --accent-cream-dim: #9a8c80;
+  --accent-cream-10: rgba(221, 203, 186, 0.1);
+  --accent-glow: #7d3c96;
+
+  /* Text */
+  --text-primary: #ffffff;
+  --text-secondary: #8f8699;
+  --text-tertiary: #5a5266;
+
+  /* Platform brand colors */
+  --brand-x: #71767b;
+  --brand-ig: #c13584;
+  --brand-li: #0a66c2;
+  --brand-tt: #00f2ea;
+  --brand-yt: #ff0000;
+  --brand-threads: #ffffff;
+
+  /* Status */
+  --status-success: #4caf50;
+  --status-failed: #ef4444;
+
+  /* Radii */
+  --radius-lg: 16px;
+  --radius-md: 8px;
+  --radius-sm: 4px;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg-deep: var(--bg-deep);
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-surface-hover: var(--bg-surface-hover);
+  --color-bg-cell: var(--bg-cell);
+  --color-bg-cell-hover: var(--bg-cell-hover);
+  --color-bg-cell-muted: var(--bg-cell-muted);
+  --color-bg-rail: var(--bg-rail);
+  --color-bg-sidebar: var(--bg-sidebar);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-highlight: var(--border-highlight);
+  --color-accent-cream: var(--accent-cream);
+  --color-accent-cream-dim: var(--accent-cream-dim);
+  --color-accent-cream-10: var(--accent-cream-10);
+  --color-accent-glow: var(--accent-glow);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-brand-x: var(--brand-x);
+  --color-brand-ig: var(--brand-ig);
+  --color-brand-li: var(--brand-li);
+  --color-brand-tt: var(--brand-tt);
+  --color-brand-yt: var(--brand-yt);
+  --color-brand-threads: var(--brand-threads);
+  --color-status-success: var(--status-success);
+  --color-status-failed: var(--status-failed);
+  --font-display: var(--font-sora);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Base ─── */
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  font-size: 13px;
+  line-height: 1.4;
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+/* ─── Animations ─── */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-fail {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+  50% { box-shadow: 0 0 0 4px rgba(239, 68, 68, 0); }
+}
+
+@keyframes glow-dot {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+@keyframes modal-backdrop {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modal-slide {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.4s ease-out forwards;
+}
+
+.animate-pulse-fail {
+  animation: pulse-fail 2s ease-in-out infinite;
+}
+
+.animate-modal-backdrop {
+  animation: modal-backdrop 0.2s ease-out forwards;
+}
+
+.animate-modal-slide {
+  animation: modal-slide 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ─── Noise Overlay ─── */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* ─── Ambient Background ─── */
+.ambient-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(82, 45, 122, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(221, 203, 186, 0.06) 0%, transparent 40%),
+    var(--bg-deep);
 }
