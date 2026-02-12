@@ -34,7 +34,7 @@ npm install
 
 echo "[4/5] Setting up environment..."
 cat > .env.local << 'ENVEOF'
-RESEND_API_KEY=re_ixnAATi9_NQrd87HtshA6CZXdrJ8PWk9u
+RESEND_API_KEY=re_JPD6mQCC_CQc6Lq2dWiBKNDXs9z3aQjd1
 # Reddit (fill in when you have API access)
 # REDDIT_CLIENT_ID=
 # REDDIT_CLIENT_SECRET=
