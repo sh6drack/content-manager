@@ -38,7 +38,7 @@ npm install --silent
 if [ ! -f .env.local ]; then
   echo "[env] Creating .env.local..."
   cat > .env.local << 'ENVEOF'
-RESEND_API_KEY=re_JPD6mQCC_CQc6Lq2dWiBKNDXs9z3aQjd1
+AWS_REGION=us-east-2
 ENVEOF
 else
   echo "[env] .env.local already exists"

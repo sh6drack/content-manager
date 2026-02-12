@@ -22,7 +22,7 @@ import * as fs from "fs";
 config({ path: resolve(__dirname, "../.env.local") });
 config({ path: resolve(__dirname, "../.env") });
 
-import { Resend } from "resend";
+import { sendEmail } from "../src/services/ses-client";
 
 // ─── Types ───
 
@@ -477,12 +477,6 @@ async function main() {
   }
 
   // Step 5: Send emails
-  if (!process.env.RESEND_API_KEY) {
-    console.error("ERROR: RESEND_API_KEY not set");
-    process.exit(1);
-  }
-
-  const resend = new Resend(process.env.RESEND_API_KEY);
   const delayMs = Math.ceil((3600 * 1000) / ratePerHour);
   let sent = 0;
   let failed = 0;
@@ -493,7 +487,7 @@ async function main() {
     const { subject, html, text } = generateFullEmail(inv);
 
     try {
-      const result = await resend.emails.send({
+      const result = await sendEmail({
         from: "Polarity Lab <team@polarity-lab.com>",
         to: inv.email!,
         subject,

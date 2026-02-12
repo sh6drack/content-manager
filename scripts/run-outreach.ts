@@ -13,7 +13,7 @@
  *   npx tsx scripts/run-outreach.ts --email --rate 50    # 50 emails/hour
  *
  * Environment Variables:
- *   RESEND_API_KEY          — Resend API key for email sending
+ *   AWS credentials          — Via EC2 instance role or ~/.aws/credentials
  *   DATABASE_URL            — Neon PostgreSQL connection string
  *   REDDIT_ACCESS_TOKEN     — Reddit OAuth access token
  *   REDDIT_CLIENT_ID        — Reddit app client ID
@@ -29,7 +29,7 @@ import { resolve } from "path";
 config({ path: resolve(__dirname, "../.env.local") });
 config({ path: resolve(__dirname, "../.env") });
 
-import { Resend } from "resend";
+import { sendEmail } from "../src/services/ses-client";
 import { ALL_VCS, getVCStats, VC_CATEGORIES, type VCCategory } from "../src/services/vc-list";
 import { generateVCEmail, type VCContact } from "../src/services/email-templates";
 import { getAllMergedVCs } from "../src/services/mercury-vc-list";
@@ -75,12 +75,7 @@ ${JSON.stringify(getVCStats(), null, 2)}
 // ─── Email Campaign ───
 
 async function runEmailCampaign() {
-  if (!process.env.RESEND_API_KEY) {
-    console.error("ERROR: RESEND_API_KEY not set. Get one at https://resend.com");
-    process.exit(1);
-  }
-
-  const resend = new Resend(process.env.RESEND_API_KEY);
+  // AWS SES credentials come from instance role (EC2) or ~/.aws/credentials (local)
 
   // Filter contacts — use merged list (existing + Mercury) unless filtering by category
   let contacts: VCContact[];
@@ -130,7 +125,7 @@ async function runEmailCampaign() {
     const { subject, html, text } = generateVCEmail(vc);
 
     try {
-      const result = await resend.emails.send({
+      const result = await sendEmail({
         from: "Polarity Lab <team@polarity-lab.com>",
         to: vc.email,
         subject,

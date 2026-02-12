@@ -18,18 +18,48 @@ import { resolve } from "path";
 config({ path: resolve(__dirname, "../.env.local") });
 config({ path: resolve(__dirname, "../.env") });
 
-import { Resend } from "resend";
+import { sendEmail } from "../src/services/ses-client";
 import { polarityLabInvestors } from "../src/services/targeted-investors";
 
 const args = process.argv.slice(2);
 const dryRun = args.includes("--dry-run");
 const tierFilter = args.find((a) => a.startsWith("--tier="))?.split("=")[1];
 
-// Emails to skip (already sent in previous partial run with old framing)
+// Emails already sent across two partial runs (31 total). Do not re-send.
 const ALREADY_SENT_EMAILS = new Set([
+  // Run 1 — old framing (3 emails, Feb 12 early)
   "vivienne@socos.org",
   "constant@newfundcap.com",
   "dina@psymed.ventures",
+  // Run 2 — corrected framing (28 emails, Feb 12)
+  "amit@altoneuroscience.com",
+  "jeff@google.com",
+  "andrew@aifund.ai",
+  "elad@eladgil.com",
+  "demis@deepmind.com",
+  "gokulr@gmail.com",
+  "troy@crossculture.com",
+  "guy@soundventures.com",
+  "scooter@tqventures.com",
+  "david@lyrahealth.com",
+  "kunle@whatif.vc",
+  "jmc@launch.co",
+  "alexis@sevensevensix.com",
+  "naval@angellist.com",
+  "sahil@shl.vc",
+  "erik@a16z.com",
+  "shauntel@reachcapital.com",
+  "henri@harlem.capital",
+  "jarrid@harlem.capital",
+  "arlan@backstagecapital.com",
+  "jewel@collab.capital",
+  "charles@precursorvc.com",
+  "marlon@macventurecapital.com",
+  "lo@plexocapital.com",
+  "terri@typecapital.com",
+  "ssykes@lsvp.com",
+  "info@brownangelgroup.org",
+  "vanwickleventures@brown.edu",
 ]);
 
 // Tier mapping based on investor focus
@@ -169,13 +199,6 @@ polarity-lab.com
 // ─── Main ───
 
 async function main() {
-  if (!process.env.RESEND_API_KEY) {
-    console.error("ERROR: RESEND_API_KEY not set");
-    process.exit(1);
-  }
-
-  const resend = new Resend(process.env.RESEND_API_KEY);
-
   let investors = polarityLabInvestors;
 
   // Filter by tier if specified
@@ -243,7 +266,7 @@ async function main() {
     const tier = getTier(inv);
 
     try {
-      const result = await resend.emails.send({
+      const result = await sendEmail({
         from: "Polarity Lab <team@polarity-lab.com>",
         to: inv.email,
         subject,

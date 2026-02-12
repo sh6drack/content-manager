@@ -10,18 +10,12 @@ import { resolve } from "path";
 config({ path: resolve(__dirname, "../.env.local") });
 config({ path: resolve(__dirname, "../.env") });
 
-import { Resend } from "resend";
+import { sendEmail } from "../src/services/ses-client";
 import { ALL_VCS } from "../src/services/vc-list";
 import { generateVCEmail, type VCContact } from "../src/services/email-templates";
 import { getMercuryVCs } from "../src/services/mercury-vc-list";
 
 async function main() {
-  if (!process.env.RESEND_API_KEY) {
-    console.error("ERROR: RESEND_API_KEY not set");
-    process.exit(1);
-  }
-
-  const resend = new Resend(process.env.RESEND_API_KEY);
   const dryRun = process.argv.includes("--dry-run");
 
   // Get existing emails/names to skip
@@ -66,7 +60,7 @@ async function main() {
     const { subject, html, text } = generateVCEmail(vc);
 
     try {
-      const result = await resend.emails.send({
+      const result = await sendEmail({
         from: "Polarity Lab <team@polarity-lab.com>",
         to: vc.email,
         subject,

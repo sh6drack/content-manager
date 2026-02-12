@@ -1,4 +1,4 @@
-import { Resend } from "resend";
+import { sendEmail } from "./ses-client";
 import { db } from "@/db";
 import { outreachEmails, outreachCampaigns } from "@/db/outreach-schema";
 import { eq } from "drizzle-orm";
@@ -6,8 +6,6 @@ import { generateVCEmail, type VCContact } from "./email-templates";
 
 export type { VCContact } from "./email-templates";
 export { generateVCEmail } from "./email-templates";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 // ─── Sending Engine ───
 
@@ -20,15 +18,12 @@ export async function sendOutreachEmail(
   const { subject, html, text } = generateVCEmail(contact);
 
   try {
-    const result = await resend.emails.send({
+    const result = await sendEmail({
       from: `${fromName} <${fromEmail}>`,
       to: contact.email,
       subject,
       html,
       text,
-      headers: {
-        "X-Campaign-Id": campaignId,
-      },
       tags: [
         { name: "campaign", value: campaignId },
         { name: "firm", value: contact.firm.replace(/[^a-zA-Z0-9-_]/g, "_").substring(0, 50) },
