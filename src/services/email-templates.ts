@@ -37,7 +37,7 @@ export function generateVCEmail(vc: VCContact): { subject: string; html: string;
 
   <p><strong>The proof it's domain-agnostic:</strong> We deployed the same math on music without retraining. Out came <a href="https://wax-feed.com" style="color: #6366f1;">WaxFeed</a> — 553k albums indexed, 26 unique listener archetypes that emerged from the data (we didn't design them), and user-to-user matching based on how people actually <em>think</em> about music.</p>
 
-  <p>Same algorithm, different vocabulary → <a href="https://fuckonmydj.com" style="color: #6366f1;">FUCKONMYDJ</a> (DJ marketplace). Same algorithm → <a href="https://painpoints.site" style="color: #6366f1;">Painpoints</a> (fund problems, not promises). Four deployments. Zero retraining. That's what domain-agnostic means.</p>
+  <p>Same algorithm, different vocabulary → <a href="https://painpoints.site" style="color: #6366f1;">Painpoints</a> (fund problems, not promises). Same algorithm → FUCKONMYDJ (talent discovery, in development). Four deployments. Zero retraining. That's what domain-agnostic means.</p>
 
   <p><strong>The team:</strong></p>
   <ul style="padding-left: 20px;">
@@ -51,8 +51,8 @@ export function generateVCEmail(vc: VCContact): { subject: string; html: string;
     <li><a href="https://algorithm.polarity-lab.com" style="color: #6366f1;">The Algorithm</a> — full technical pitch, one page</li>
     <li><a href="https://polarity-lab.com" style="color: #6366f1;">Polarity OS</a> — 205+ API endpoints. Full cognitive operating system.</li>
     <li><a href="https://wax-feed.com" style="color: #6366f1;">WaxFeed</a> — music deployment. 553k albums. 26 emergent archetypes.</li>
-    <li><a href="https://fuckonmydj.com" style="color: #6366f1;">FUCKONMYDJ</a> — DJ marketplace</li>
-    <li><a href="https://painpoints.site" style="color: #6366f1;">Painpoints</a> — problem marketplace</li>
+    <li><a href="https://painpoints.site" style="color: #6366f1;">Painpoints</a> — problem marketplace. Fund problems, not promises.</li>
+    <li>FUCKONMYDJ — talent discovery deployment (in development)</li>
     <li>2 patents filed. Grounded in neuroscience (Yeo 7-network model, Bayesian memory retrieval).</li>
   </ul>
 
@@ -75,7 +75,7 @@ We built the first algorithm that measures importance — not what users did, bu
 
 The proof it's domain-agnostic: We deployed the same math on music without retraining. Out came WaxFeed (https://wax-feed.com) — 553k albums indexed, 26 unique listener archetypes that emerged from the data (we didn't design them), and user-to-user matching based on how people actually think about music.
 
-Same algorithm, different vocabulary -> FUCKONMYDJ (https://fuckonmydj.com) (DJ marketplace). Same algorithm -> Painpoints (https://painpoints.site) (fund problems, not promises). Four deployments. Zero retraining. That's what domain-agnostic means.
+Same algorithm, different vocabulary -> Painpoints (https://painpoints.site) (fund problems, not promises). Same algorithm -> FUCKONMYDJ (talent discovery, in development). Four deployments. Zero retraining. That's what domain-agnostic means.
 
 The team:
 - Theodore Addo — Founder & PI. MD Candidate, Brown Alpert '26. MIT Boyden Lab (whole brain imaging). 11 years on the core question.
@@ -86,8 +86,8 @@ What exists today:
 - The Algorithm (https://algorithm.polarity-lab.com) — full technical pitch
 - Polarity OS (https://polarity-lab.com) — 205+ API endpoints, full cognitive OS
 - WaxFeed (https://wax-feed.com) — music deployment, 553k albums, 26 emergent archetypes
-- FUCKONMYDJ (https://fuckonmydj.com) — DJ marketplace
-- Painpoints (https://painpoints.site) — problem marketplace
+- Painpoints (https://painpoints.site) — problem marketplace, fund problems not promises
+- FUCKONMYDJ — talent discovery deployment (in development)
 - 2 patents filed. Grounded in neuroscience (Yeo 7-network model, Bayesian memory retrieval).
 
 ${focusMatch.closer}
