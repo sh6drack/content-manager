@@ -1,4 +1,4 @@
-export type Platform = "x" | "instagram" | "linkedin" | "tiktok" | "youtube" | "threads";
+export type Platform = "x" | "instagram" | "linkedin" | "tiktok" | "youtube" | "threads" | "reddit";
 export type PostStatus = "draft" | "scheduled" | "publishing" | "published" | "failed";
 
 export const PLATFORMS: Record<
@@ -11,6 +11,7 @@ export const PLATFORMS: Record<
   tiktok: { label: "TikTok", color: "var(--brand-tt)", charLimit: 4000 },
   youtube: { label: "YouTube", color: "var(--brand-yt)", charLimit: 5000 },
   threads: { label: "Threads", color: "var(--brand-threads)", charLimit: 500 },
+  reddit: { label: "Reddit", color: "var(--brand-reddit, #ff4500)", charLimit: 40000 },
 };
 
 export const STATUS_OPACITY: Record<PostStatus, number> = {

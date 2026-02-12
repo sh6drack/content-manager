@@ -67,4 +67,12 @@ export const OAUTH_CONFIGS: Record<Platform, OAuthConfig> = {
     clientSecretEnv: "META_APP_SECRET",
     profileUrl: "https://graph.threads.net/v1.0/me",
   },
+  reddit: {
+    authUrl: "https://www.reddit.com/api/v1/authorize",
+    tokenUrl: "https://www.reddit.com/api/v1/access_token",
+    scopes: ["identity", "submit", "read", "mysubreddits"],
+    clientIdEnv: "REDDIT_CLIENT_ID",
+    clientSecretEnv: "REDDIT_CLIENT_SECRET",
+    profileUrl: "https://oauth.reddit.com/api/v1/me",
+  },
 };

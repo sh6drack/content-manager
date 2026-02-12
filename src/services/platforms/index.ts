@@ -6,6 +6,7 @@ import { linkedinAdapter } from "./linkedin";
 import { tiktokAdapter } from "./tiktok";
 import { youtubeAdapter } from "./youtube";
 import { threadsAdapter } from "./threads";
+import { redditAdapter } from "./reddit";
 
 const adapters: Record<Platform, PlatformAdapter> = {
   x: xAdapter,
@@ -14,6 +15,7 @@ const adapters: Record<Platform, PlatformAdapter> = {
   tiktok: tiktokAdapter,
   youtube: youtubeAdapter,
   threads: threadsAdapter,
+  reddit: redditAdapter,
 };
 
 export function getAdapter(platform: Platform): PlatformAdapter {
