@@ -41,7 +41,7 @@ function getTier(investor: typeof polarityLabInvestors[0]): number {
 // Generate a tailored subject line based on tier
 function getTailoredSubject(investor: typeof polarityLabInvestors[0], tier: number): string {
   switch (tier) {
-    case 1: return "Yeo 7-network model meets production AI: 4 domains, 0 retraining";
+    case 1: return "We built the algorithm that teaches AI what to hold onto";
     case 2: {
       const notes = investor.notes.toLowerCase();
       if (notes.includes("music") || notes.includes("spotify")) return "553k albums, 26 listener archetypes, the cognitive layer music needs";
@@ -62,30 +62,30 @@ function getTailoredOpener(investor: typeof polarityLabInvestors[0], tier: numbe
   const notesLower = notes.toLowerCase();
 
   if (tier === 1) {
-    // Neuroscience tier: lead with the science
+    // Neuroscience tier: lead with the problem they know
     if (notesLower.includes("affective computing")) {
-      return `Your work in affective computing pioneered measuring human emotional states through technology. We are doing the same thing through language. Our algorithm, Conversational Connectomics, uses spreading activation theory and Bayesian memory models to measure what things weigh in someone's life from how they talk. Same goal, different modality.`;
+      return `Your work in affective computing pioneered measuring human emotional states through technology. We are doing the same thing through language. We built an algorithm that measures the weight things carry in someone's life from how they talk. Not sentiment. Weight. What repeats, what changes, what someone protects. Same goal, different modality.`;
     }
     if (notesLower.includes("brain tech") || notesLower.includes("braintech")) {
-      return `You are investing in technology that understands the brain. We built an algorithm grounded in the Yeo 7-network model that measures what matters to someone from their conversation. Not sentiment analysis. Cognitive weight. It has been deployed across four domains without retraining to prove the math is universal.`;
+      return `You are investing in technology that understands the brain. We built an algorithm that measures what things weigh in someone's life from their conversation. Not sentiment analysis. Cognitive weight. It has been deployed across four domains without retraining to prove the math is universal.`;
     }
-    return `We built an algorithm grounded in the Yeo 7-network brain model and Bayesian memory retrieval that measures what things weigh in someone's life from conversation alone. 145+ peer-reviewed papers behind the science, 12 core constructs validated, 2 patents filed. We thought you would be one of the few people who would actually read the papers.`;
+    return `AI forgets things but has no way to know what is important enough to hold onto. We built the algorithm that teaches systems what to hold onto. It measures the weight that things carry in someone's life. What repeats, what drifts, what compounds over time. Two patents filed, four domains deployed, zero retraining.`;
   }
 
   if (tier === 4) {
     // Diversity thesis: lead with team + substance
-    return `Three Black founders. Brown and MIT. Two patents. An MD candidate with 11 years in neuroscience. We are not pitching a wrapper around an LLM. We built a novel algorithm called Conversational Connectomics that measures what matters to people from how they talk. It has been deployed across four domains without retraining. The science is real and the products are live.`;
+    return `Three Black founders. Brown and MIT. Two patents. An MD candidate with 11 years in neuroscience. We are not pitching a wrapper around an LLM. We built an algorithm that measures the weight things carry in someone's life. It has been deployed across four domains without retraining. The science is real and the products are live.`;
   }
 
   if (tier === 5) {
     // Alumni tier: warm connection
     if (notesLower.includes("brown")) {
-      return `We are fellow Brown founders building something we think you would find interesting. Our team includes an MD candidate from Brown Alpert and a CS student from Brown '27. We built an algorithm grounded in neuroscience that measures what things weigh in someone's life from conversation. It has been deployed across four domains without changing the math.`;
+      return `We are fellow Brown founders building something we think you would find interesting. Our team includes an MD candidate from Brown Alpert and a CS student from Brown '27. We built an algorithm that measures the weight things carry in someone's life from conversation. It has been deployed across four domains without changing the math.`;
     }
     if (notesLower.includes("mit")) {
-      return `Our founder trained at MIT Boyden Lab in whole brain imaging before building an algorithm that measures cognitive weight from conversation. We thought the MIT alumni network would appreciate what 11 years of neuroscience research looks like when it becomes deployable math. The algorithm has been shipped across four domains without retraining.`;
+      return `Our founder trained at MIT Boyden Lab before building an algorithm that measures what things weigh in someone's life from conversation. We thought the MIT alumni network would appreciate what 11 years of neuroscience research looks like when it becomes deployable math. The algorithm has been shipped across four domains without retraining.`;
     }
-    return `We are building in Providence and thought the local community should know about what we are working on. Our team built an algorithm grounded in neuroscience that measures what things weigh in someone's life from how they talk. It has been deployed across four domains without retraining. Two patents filed.`;
+    return `We are building in Providence and thought the local community should know about what we are working on. Our team built an algorithm that measures the weight things carry in someone's life from how they talk. It has been deployed across four domains without retraining. Two patents filed.`;
   }
 
   // Tier 2: domain match
