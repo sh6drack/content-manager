@@ -40,7 +40,6 @@ function getTier(investor: typeof polarityLabInvestors[0]): number {
 
 // Generate a tailored subject line based on tier
 function getTailoredSubject(investor: typeof polarityLabInvestors[0], tier: number): string {
-  const firstName = investor.name.split(" ")[0];
   switch (tier) {
     case 1: return "Yeo 7-network model meets production AI: 4 domains, 0 retraining";
     case 2: {
@@ -52,64 +51,60 @@ function getTailoredSubject(investor: typeof polarityLabInvestors[0], tier: numb
     }
     case 3: return "Domain-agnostic cognitive AI: deployed across 4 verticals, no retraining";
     case 4: return "Black founders from Brown and MIT building patented cognitive AI infrastructure";
-    case 5: return `Fellow alum building neuroscience-grounded AI, would love 15 min`;
+    case 5: return "Fellow alum building neuroscience-grounded AI, would love 15 min";
     default: return "We built the algorithm that teaches AI what to hold onto, and shipped it 4 times to prove it";
   }
 }
 
 // Generate tailored opener from investor notes
 function getTailoredOpener(investor: typeof polarityLabInvestors[0], tier: number): string {
-  const firstName = investor.name.split(" ")[0];
   const notes = investor.notes;
-
-  // Extract the key insight from notes and turn it into a personal connection
-  // The notes field contains rich context about why this investor specifically would care
   const notesLower = notes.toLowerCase();
 
   if (tier === 1) {
     // Neuroscience tier: lead with the science
     if (notesLower.includes("affective computing")) {
-      return `Your work in affective computing pioneered measuring human emotional states through technology. We're doing the same thing through language. Our algorithm, Conversational Connectomics, uses spreading activation theory and Bayesian memory models to measure what things weigh in someone's life from how they talk. Same goal, different modality.`;
+      return `Your work in affective computing pioneered measuring human emotional states through technology. We are doing the same thing through language. Our algorithm, Conversational Connectomics, uses spreading activation theory and Bayesian memory models to measure what things weigh in someone's life from how they talk. Same goal, different modality.`;
     }
     if (notesLower.includes("brain tech") || notesLower.includes("braintech")) {
-      return `You're investing in technology that understands the brain. We built an algorithm grounded in the Yeo 7-network model that measures what matters to someone from their conversation. Not sentiment analysis. Cognitive weight. It's been deployed across four domains without retraining to prove the math is universal.`;
+      return `You are investing in technology that understands the brain. We built an algorithm grounded in the Yeo 7-network model that measures what matters to someone from their conversation. Not sentiment analysis. Cognitive weight. It has been deployed across four domains without retraining to prove the math is universal.`;
     }
-    return `We built an algorithm grounded in the Yeo 7-network brain model and Bayesian memory retrieval that measures what things weigh in someone's life from conversation alone. 145+ peer-reviewed papers behind the science, 12 core constructs validated, 2 patents filed. We thought you'd be one of the few people who'd actually read the papers.`;
+    return `We built an algorithm grounded in the Yeo 7-network brain model and Bayesian memory retrieval that measures what things weigh in someone's life from conversation alone. 145+ peer-reviewed papers behind the science, 12 core constructs validated, 2 patents filed. We thought you would be one of the few people who would actually read the papers.`;
   }
 
   if (tier === 4) {
     // Diversity thesis: lead with team + substance
-    return `Three Black founders. Brown and MIT. Two patents. An MD candidate with 11 years in neuroscience. We're not pitching a wrapper around an LLM. We built a novel algorithm called Conversational Connectomics that measures what matters to people from how they talk. It's been deployed across four domains without retraining. The science is real and the products are live.`;
+    return `Three Black founders. Brown and MIT. Two patents. An MD candidate with 11 years in neuroscience. We are not pitching a wrapper around an LLM. We built a novel algorithm called Conversational Connectomics that measures what matters to people from how they talk. It has been deployed across four domains without retraining. The science is real and the products are live.`;
   }
 
   if (tier === 5) {
     // Alumni tier: warm connection
     if (notesLower.includes("brown")) {
-      return `We're fellow Brown founders building something we think you'd find interesting. Our team includes an MD candidate from Brown Alpert and a CS student from Brown '27. We built an algorithm grounded in neuroscience that measures what things weigh in someone's life from conversation. It's been deployed across four domains without changing the math.`;
+      return `We are fellow Brown founders building something we think you would find interesting. Our team includes an MD candidate from Brown Alpert and a CS student from Brown '27. We built an algorithm grounded in neuroscience that measures what things weigh in someone's life from conversation. It has been deployed across four domains without changing the math.`;
     }
     if (notesLower.includes("mit")) {
       return `Our founder trained at MIT Boyden Lab in whole brain imaging before building an algorithm that measures cognitive weight from conversation. We thought the MIT alumni network would appreciate what 11 years of neuroscience research looks like when it becomes deployable math. The algorithm has been shipped across four domains without retraining.`;
     }
-    return `We're building in Providence and thought the local community should know about what we're working on. Our team built an algorithm grounded in neuroscience that measures what things weigh in someone's life from how they talk. It's been deployed across four domains without retraining. Two patents filed.`;
+    return `We are building in Providence and thought the local community should know about what we are working on. Our team built an algorithm grounded in neuroscience that measures what things weigh in someone's life from how they talk. It has been deployed across four domains without retraining. Two patents filed.`;
   }
 
   // Tier 2: domain match
   if (notesLower.includes("spotify") || notesLower.includes("music")) {
-    return `You know music personalization from the inside. We built an algorithm that measures what things weigh in someone's life, then pointed it at music without changing the math. Out came WaxFeed: 553k albums indexed, 26 listener archetypes that emerged from the data on their own. The algorithm found them because it measures cognitive weight, not clicks.`;
+    return `You know music personalization from the inside. We built an algorithm that measures what things weigh in someone's life, then pointed it at music without changing the math. Out came WaxFeed: 553,000 albums indexed, 26 listener archetypes that emerged from the data on their own. The algorithm found them because it measures cognitive weight, not clicks.`;
   }
   if (notesLower.includes("mental health") || notesLower.includes("behavioral health")) {
-    return `You're working at the intersection of technology and behavioral health. Our founder is an MD candidate at Brown who spent 11 years asking how you measure what matters to someone. The answer is an algorithm that detects drift, when behavior quietly diverges from baseline, by measuring what things weigh in someone's life from how they talk about them.`;
+    return `You are working at the intersection of technology and behavioral health. Our founder is an MD candidate at Brown who spent 11 years asking how you measure what matters to someone. The answer is an algorithm that detects drift, when behavior quietly diverges from baseline, by measuring what things weigh in someone's life from how they talk about them.`;
   }
   if (notesLower.includes("podcast") || notesLower.includes("audio")) {
-    return `You're investing in podcast and audio infrastructure. We built something that goes deeper than production tools. Our algorithm measures what things weigh in someone's life from conversation, and our podcast AVDP is both a product and a research instrument. Every episode is data the algorithm trains on. Entertainment that doubles as science.`;
+    return `You are investing in podcast and audio infrastructure. We built something that goes deeper than production tools. Our algorithm measures what things weigh in someone's life from conversation, and our podcast AVDP is both a product and a research instrument. Every episode is data the algorithm trains on. Entertainment that doubles as science.`;
   }
 
   // Tier 3: platform/infrastructure (default)
   if (notesLower.includes("domain-agnostic") || notesLower.includes("4 domain") || notesLower.includes("four domain")) {
-    return `You invest in AI that generalizes. We built an algorithm that measures what things weigh in someone's life from how they talk about it, and proved it's domain-agnostic by deploying it across music, problem-solving, podcasts, and talent discovery without changing the math. Four verticals. Zero retraining. Two patents.`;
+    return `You invest in AI that generalizes. We built an algorithm that measures what things weigh in someone's life from how they talk about it, and proved it is domain-agnostic by deploying it across music, problem-solving, podcasts, and talent discovery without changing the math. Four verticals. Zero retraining. Two patents.`;
   }
 
-  return `We built an algorithm that measures what things weigh in someone's life. Not what they clicked or liked. What carries weight. What repeats. What changes. It learns all of it from how people talk about what they care about. We've deployed it across four domains without retraining to prove the math works everywhere.`;
+  return `We built an algorithm that measures what things weigh in someone's life. Not what they clicked or liked. What carries weight. What repeats. What changes. It learns all of it from how people talk about what they care about. We have deployed it across four domains without retraining to prove the math works everywhere.`;
 }
 
 function generateTailoredEmail(investor: typeof polarityLabInvestors[0]): { subject: string; html: string; text: string } {
@@ -124,15 +119,15 @@ function generateTailoredEmail(investor: typeof polarityLabInvestors[0]): { subj
 
   <p>${opener}</p>
 
-  <p>We call the science <a href="https://polarity-lab.com" style="color: #6366f1;">Conversational Connectomics</a>. Every conversation carries signal: what repeats, what gets emphasis, what you avoid, what you protect. The algorithm picks up all of it and builds a living profile of what matters to someone. Not a chat log. Comprehension. Two patents filed, grounded in the neuroscience of how brains actually assign importance.</p>
+  <p>Here is how it works. The algorithm listens to natural conversation and tracks three things: what someone repeats, what they give weight to, and what they quietly avoid. Over time it measures how those signals shift, compound, and decay. The output is a living cognitive profile that updates with every interaction. Not a summary. Not a keyword cloud. A structured model of what actually matters to a person, built from their own language. Two patents filed, grounded in the neuroscience of how brains assign importance.</p>
 
-  <p>We proved it's domain-agnostic by pointing it at music without changing the math. Out came <a href="https://wax-feed.com" style="color: #6366f1;">WaxFeed</a>: 553k albums indexed, 26 listener archetypes that emerged from the data on their own. Then we pointed it at problem-solving and built <a href="https://painpoints.site" style="color: #6366f1;">Painpoints</a>, where real money backs real problems and the algorithm matches builders to bounties using cognitive fingerprinting. Same engine. Different vocabulary. Four deployments. Zero retraining.</p>
+  <p>We proved it by pointing the algorithm at music. No retraining, no domain-specific tuning. Out came <a href="https://wax-feed.com" style="color: #6366f1;">WaxFeed</a>: 553,000 albums indexed, and 26 distinct listener archetypes that the algorithm discovered on its own. Nobody designed those archetypes. The math surfaced them from how people talk about what they listen to. WaxFeed is live, people use it, and every conversation on the platform feeds back into the research. The full technical breakdown of the algorithm is here: <a href="https://algorithm.polarity-lab.com" style="color: #6366f1;">algorithm.polarity-lab.com</a></p>
+
+  <p>We then deployed the same algorithm to problem-solving (<a href="https://painpoints.site" style="color: #6366f1;">Painpoints</a>, where it matches builders to bounties using cognitive fingerprints) and talent discovery, all without changing the underlying math. Four domains, zero retraining. The algorithm does not know what music is or what a bounty is. It knows what things weigh.</p>
 
   <p>The team: Theodore Addo, MD candidate at Brown, MIT Boyden Lab, 11 years on this question. Shadrack Annor, Brown CS '27, built WaxFeed, patent #1. Nathan Amankwah, UOttawa '27, formalized the algorithm, patent #2. We also produce <a href="https://polarity-lab.com" style="color: #6366f1;">AVDP</a>, a long-form podcast where every episode is research data the algorithm trains on. Entertainment that doubles as science.</p>
 
-  <p>The full technical pitch is one page: <a href="https://algorithm.polarity-lab.com" style="color: #6366f1;">algorithm.polarity-lab.com</a></p>
-
-  <p>Happy to do 30 minutes and show you what we've built.</p>
+  <p>Happy to do 30 minutes and show you what we have built.</p>
 
   <p>Best,<br/>
   <strong>Polarity Lab</strong><br/>
@@ -145,15 +140,15 @@ function generateTailoredEmail(investor: typeof polarityLabInvestors[0]): { subj
 
 ${opener}
 
-We call the science Conversational Connectomics (https://polarity-lab.com). Every conversation carries signal: what repeats, what gets emphasis, what you avoid, what you protect. The algorithm picks up all of it and builds a living profile of what matters to someone. Not a chat log. Comprehension. Two patents filed, grounded in the neuroscience of how brains actually assign importance.
+Here is how it works. The algorithm listens to natural conversation and tracks three things: what someone repeats, what they give weight to, and what they quietly avoid. Over time it measures how those signals shift, compound, and decay. The output is a living cognitive profile that updates with every interaction. Not a summary. Not a keyword cloud. A structured model of what actually matters to a person, built from their own language. Two patents filed, grounded in the neuroscience of how brains assign importance.
 
-We proved it's domain-agnostic by pointing it at music without changing the math. Out came WaxFeed (https://wax-feed.com): 553k albums indexed, 26 listener archetypes that emerged from the data on their own. Then we pointed it at problem-solving and built Painpoints (https://painpoints.site), where real money backs real problems and the algorithm matches builders to bounties using cognitive fingerprinting. Same engine. Different vocabulary. Four deployments. Zero retraining.
+We proved it by pointing the algorithm at music. No retraining, no domain-specific tuning. Out came WaxFeed (https://wax-feed.com): 553,000 albums indexed, and 26 distinct listener archetypes that the algorithm discovered on its own. Nobody designed those archetypes. The math surfaced them from how people talk about what they listen to. WaxFeed is live, people use it, and every conversation on the platform feeds back into the research. The full technical breakdown of the algorithm is here: algorithm.polarity-lab.com
+
+We then deployed the same algorithm to problem-solving (Painpoints, https://painpoints.site, where it matches builders to bounties using cognitive fingerprints) and talent discovery, all without changing the underlying math. Four domains, zero retraining. The algorithm does not know what music is or what a bounty is. It knows what things weigh.
 
 The team: Theodore Addo, MD candidate at Brown, MIT Boyden Lab, 11 years on this question. Shadrack Annor, Brown CS '27, built WaxFeed, patent #1. Nathan Amankwah, UOttawa '27, formalized the algorithm, patent #2. We also produce AVDP, a long-form podcast where every episode is research data the algorithm trains on. Entertainment that doubles as science.
 
-The full technical pitch is one page: algorithm.polarity-lab.com
-
-Happy to do 30 minutes and show you what we've built.
+Happy to do 30 minutes and show you what we have built.
 
 Best,
 Polarity Lab
@@ -181,14 +176,6 @@ async function main() {
     const targetTier = parseInt(tierFilter);
     investors = investors.filter((inv) => getTier(inv) === targetTier);
   }
-
-  // Filter out investors with generic/non-personal emails
-  investors = investors.filter((inv) => {
-    const email = inv.email.toLowerCase();
-    // Skip generic info@ emails for now, they're less likely to convert
-    if (email.startsWith("info@") || email.startsWith("hello@") || email.startsWith("ventures@")) return true;
-    return true;
-  });
 
   console.log(`
 ╔══════════════════════════════════════════════════╗
