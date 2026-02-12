@@ -44,20 +44,34 @@ else
   echo "[env] .env.local already exists"
 fi
 
-# Kill old campaign if running
-if screen -list | grep -q outreach; then
-  echo "[restart] Stopping old campaign..."
-  screen -S outreach -X quit 2>/dev/null || true
-  sleep 1
-fi
+# Kill old campaigns if running
+for session in outreach targeted; do
+  if screen -list | grep -q "$session"; then
+    echo "[restart] Stopping old $session session..."
+    screen -S "$session" -X quit 2>/dev/null || true
+    sleep 1
+  fi
+done
 
-echo "[launch] Starting campaign with latest templates..."
+# Run targeted investor campaign (personalized per-investor)
+echo "[launch] Starting targeted investor campaign..."
+screen -dmS targeted bash -c 'npx tsx scripts/send-targeted-wave.ts 2>&1 | tee targeted.log'
+
+# Run general outreach campaign (174 VC list)
+echo "[launch] Starting general outreach campaign..."
 screen -dmS outreach bash -c 'npx tsx scripts/run-outreach.ts --email 2>&1 | tee outreach.log'
 
 echo ""
 echo "================================================"
-echo "  Campaign running with latest templates"
-echo "  screen -r outreach    to watch live"
-echo "  Ctrl+A then D         to detach"
-echo "  tail -f outreach.log  to check logs"
+echo "  Both campaigns running with latest templates"
+echo ""
+echo "  Targeted (48 personalized investors):"
+echo "    screen -r targeted    to watch live"
+echo "    tail -f targeted.log  to check logs"
+echo ""
+echo "  General (174 VC list):"
+echo "    screen -r outreach    to watch live"
+echo "    tail -f outreach.log  to check logs"
+echo ""
+echo "  Ctrl+A then D to detach from any screen"
 echo "================================================"
