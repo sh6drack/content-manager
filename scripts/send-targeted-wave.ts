@@ -25,6 +25,13 @@ const args = process.argv.slice(2);
 const dryRun = args.includes("--dry-run");
 const tierFilter = args.find((a) => a.startsWith("--tier="))?.split("=")[1];
 
+// Emails to skip (already sent in previous partial run with old framing)
+const ALREADY_SENT_EMAILS = new Set([
+  "vivienne@socos.org",
+  "constant@newfundcap.com",
+  "dina@psymed.ventures",
+]);
+
 // Tier mapping based on investor focus
 function getTier(investor: typeof polarityLabInvestors[0]): number {
   const focusStr = investor.focus.join(" ").toLowerCase();
@@ -175,6 +182,18 @@ async function main() {
   if (tierFilter) {
     const targetTier = parseInt(tierFilter);
     investors = investors.filter((inv) => getTier(inv) === targetTier);
+  }
+
+  // Skip already-sent emails from previous partial run
+  const skipped = investors.filter((inv) => ALREADY_SENT_EMAILS.has(inv.email.toLowerCase()));
+  investors = investors.filter((inv) => !ALREADY_SENT_EMAILS.has(inv.email.toLowerCase()));
+
+  if (skipped.length > 0) {
+    console.log(`Skipping ${skipped.length} already-sent emails:`);
+    for (const inv of skipped) {
+      console.log(`  - ${inv.name} <${inv.email}> (${inv.firm})`);
+    }
+    console.log();
   }
 
   console.log(`
